@@ -8,23 +8,21 @@
   />
 
   <div
-    v-if="redirections.length >= 10"
+    v-if="mailsStore.redirections.length >= 8"
     class="col-12"
   >
     <div
       class="input-group mb-3"
-      :class="[searchIsFocused?'input-group-lg':'']"
     >
       <span
         id="basic-addon1"
         class="input-group-text bg-dark border-0 text-light shadow-none"
       ><i class="bi bi-search" /></span>
       <input
+        v-model="search"
         type="text"
         class="form-control bg-dark border-0 text-light shadow-none"
         placeholder="Search"
-        @focus="searchIsFocused = true"
-        @blur="searchIsFocused = false"
       >
     </div>
   </div>
@@ -43,14 +41,23 @@ import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import { MailItem, Header } from '@/components';
 
-const searchIsFocused = ref(false);
-
+const search = ref('');
 const mailsStore = useMailsStore();
+
+const redirectionsList = computed(() => {
+  const list = mailsStore.redirections;
+
+  if (search.value === '') {
+    return list;
+  }
+
+  return list.filter((r) => r.from.includes(search.value));
+});
 
 const redirections = computed({
   get() {
     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-    return mailsStore.redirections.sort((a, b) => ((a.from > b.from) ? 1 : ((b.from > a.from) ? -1 : 0)));
+    return redirectionsList.value.sort((a, b) => ((a.from > b.from) ? 1 : ((b.from > a.from) ? -1 : 0)));
   },
 });
 
