@@ -75,10 +75,8 @@ const login = () => {
   isLoading.value = true;
 
   userStore.login(applicationKey.value, applicationSecret.value, consumerKey.value).then(() => {
-    isLoading.value = false;
-
-    mainStore.isLoading = true;
     mainStore.init().then(() => {
+      isLoading.value = false;
       router.push({ name: 'home' });
     });
   });
