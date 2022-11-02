@@ -2,22 +2,30 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import { useMainStore } from '@/stores/main';
 import { useUserStore } from '@/stores/user';
 
+import {
+  Login, Home, Edit, New,
+} from '@/layouts';
+
 const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../layouts/LoginLayout.vue'),
+    component: Login,
   },
   {
     path: '/',
     name: 'home',
-    component: () => import('../layouts/MainLayout.vue'),
-
+    component: Home,
+  },
+  {
+    path: '/new',
+    name: 'new',
+    component: New,
   },
   {
     path: '/edit/:mailid',
     name: 'editMail',
-    component: () => import('../layouts/EditLayout.vue'),
+    component: Edit,
   },
 ];
 

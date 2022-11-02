@@ -1,6 +1,6 @@
 <template>
   <Header
-    title="Edit mail"
+    title="Edit redirection"
     sub-title="Redirections"
     sub-icon="bi-chevron-left"
     :to="{name:'home'}"

@@ -19,7 +19,7 @@
         <p
           class="mb-0"
           style="font-size: 13px;"
-          @click="goTo"
+          @click="goTo()"
         >
           <i
             class="bi"
@@ -43,6 +43,7 @@
           :style="`font-size: 26px; margin-left: 10px; color: ${option.color||'white'};`"
           :class="option.icon"
           class="bi"
+          @click="goTo(option.to)"
         />
       </div>
     </div>
@@ -81,8 +82,8 @@ const props = defineProps({
   },
 });
 
-const goTo = () => {
-  router.push(props.to);
+const goTo = (name = undefined) => {
+  router.push(name || props.to);
 };
 </script>
 
