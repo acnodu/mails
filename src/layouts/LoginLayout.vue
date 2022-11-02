@@ -1,13 +1,12 @@
 <template>
+  <Header title="Please sign" />
+
   <div
-    class="col col-12 mt-5"
+    class="col-12"
   >
     <main
       class="form-signin"
     >
-      <h1 class="h3 mb-3 fw-normal">
-        Please sign
-      </h1>
       <FloatingInput
         id="AK"
         v-model="applicationKey"
@@ -49,7 +48,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { Button, FloatingInput } from '@/components';
+import { Button, FloatingInput, Header } from '@/components';
 import { useUserStore } from '@/stores/user';
 import { useMainStore } from '@/stores/main';
 
