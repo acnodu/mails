@@ -3,7 +3,7 @@
     title="Redirections"
     :options="[{
       icon: 'bi-plus-square',
-      color: '#712cf9'
+      color: '#198754'
     }]"
   />
 

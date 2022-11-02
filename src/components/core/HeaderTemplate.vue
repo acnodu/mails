@@ -33,11 +33,14 @@
         </h1>
       </div>
 
-      <div class="col-4 text-end">
+      <div
+        class="col-4 text-end"
+        style="line-height: 0;"
+      >
         <i
           v-for="(option, index) in options"
           :key="index"
-          :style="`font-size: 25px; margin-left: 10px; color: ${option.color||'white'};`"
+          :style="`font-size: 30px; margin-left: 10px; color: ${option.color||'white'};`"
           :class="option.icon"
           class="bi"
         />
