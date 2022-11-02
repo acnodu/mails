@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useMainStore } from '@/stores/main';
+import { useUserStore } from '@/stores/user';
 
 const routes = [
   {
@@ -11,6 +12,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: () => import('../layouts/MainLayout.vue'),
+
   },
   {
     path: '/edit/:mailid',
@@ -34,6 +36,14 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+});
+
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+
+  if (to.name !== 'login' && !userStore.logged) next({ name: 'login' });
+  if (to.name === 'login' && userStore.logged) next({ name: 'home' });
+  else next();
 });
 
 export default router;
