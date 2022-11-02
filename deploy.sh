@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /home/mails
+
 git reset --hard
 git pull
 

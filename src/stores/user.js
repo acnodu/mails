@@ -7,9 +7,9 @@ export const useUserStore = defineStore({
   state: () => ({
     logged: false,
 
-    AK: useStorage('AK', '543ba087ce09ec46'),
-    AS: useStorage('AS', '6be7ce2d390cf25a97370e08733c4385'),
-    CK: useStorage('CK', '239228476055ed87c0053cb5b691f88c'),
+    AK: useStorage('AK', ''),
+    AS: useStorage('AS', ''),
+    CK: useStorage('CK', ''),
 
     infos: {},
   }),
