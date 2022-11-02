@@ -30,7 +30,10 @@
           {{ subTitle }}
         </p>
       </div>
-      <div class="col-12 pt-3">
+      <div
+        class="col-12"
+        style="padding-top: 12px;"
+      >
         <h1 class="mb-0">
           <b>{{ title }}</b>
         </h1>
