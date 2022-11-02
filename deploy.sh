@@ -1,6 +1,7 @@
 #!/bin/bash
 
-git pull --rebase
+git reset --hard
+git pull
 
 chmod +x deploy.sh
 
