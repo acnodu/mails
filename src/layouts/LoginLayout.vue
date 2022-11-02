@@ -7,11 +7,7 @@
       class="form-signin"
     >
       <h1 class="h3 mb-3 fw-normal">
-        Please sign in <router-link
-          to="/test"
-        >
-          test
-        </router-link>
+        Please sign
 
         <router-link
           to="/login"
