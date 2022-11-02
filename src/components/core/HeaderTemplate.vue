@@ -1,50 +1,58 @@
 <template>
   <div
-    class="col-12 pt-4 pb-2 mb-2 sticky-top bg-black"
+    class="col-12 pb-2 mb-2 sticky-top bg-black"
   >
-    <div class="row">
-      <div class="col-9 pt-4">
+    <div
+      v-if="subTitle === null"
+      class="row mt-5"
+    >
+      <div class="col-12 ">
         <h1 class="mb-0">
           <b>{{ title }}</b>
         </h1>
       </div>
+    </div>
 
-      <div
-        class="col-3"
-        style="position: relative;"
-      >
-        <div
-          v-if="icon === 'profile'"
-          class="profile"
-          @click="goTo"
+    <div
+      v-else
+      class="row mt-4"
+    >
+      <div class="col-12">
+        <p
+          class="mb-0"
+          style="font-size: 13px;"
         >
-          <i class="bi bi-person-fill" />
-        </div>
-
-        <div
-          v-if="icon === 'back'"
-          class="back"
-          @click="goTo"
-        >
-          <i class="bi bi-arrow-left-short" />
-        </div>
+          <i
+            class="bi"
+            :class="subIcon"
+          />
+          {{ subTitle }}
+        </p>
+      </div>
+      <div class="col-12 pt-1">
+        <h1 class="mb-0">
+          <b>{{ title }}</b>
+        </h1>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 
-const router = useRouter();
-
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: '',
   },
 
-  icon: {
+  subTitle: {
+    type: String,
+    default: null,
+  },
+
+  subIcon: {
     type: String,
     default: null,
   },
@@ -55,9 +63,9 @@ const props = defineProps({
   },
 });
 
-const goTo = () => {
-  router.push(props.to);
-};
+// const goTo = () => {
+//   router.push(props.to);
+// };
 </script>
 
 <style scoped>

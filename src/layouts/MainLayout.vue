@@ -1,5 +1,5 @@
 <template>
-  <Header title="Redirections." />
+  <Header title="Redirections" />
 
   <div class="col-12">
     <MailItem

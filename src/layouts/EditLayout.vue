@@ -1,11 +1,15 @@
 <template>
   <Header
-    title="Edit"
-    icon="back"
+    title="Edit mail"
+    sub-title="Redirections"
+    sub-icon="bi-chevron-left"
     :to="{name:'home'}"
   />
 
-  <div class="col-12">
+  <div
+    v-if="currentRedirection"
+    class="col-12"
+  >
     <FloatingInput
       v-model="currentRedirection.from"
       label="From:"
@@ -38,10 +42,6 @@
       Save
     </button>
   </div>
-
-  <pre>
-  {{ currentRedirection }}
-  </pre>
 </template>
 
 <script setup>
