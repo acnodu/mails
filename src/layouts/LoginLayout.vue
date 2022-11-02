@@ -49,9 +49,11 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { Button, FloatingInput } from '@/components';
 import { useUserStore } from '@/stores/user';
 
+const router = useRouter();
 const userStore = useUserStore();
 
 const isLoading = ref(false);
@@ -72,6 +74,8 @@ const login = () => {
 
   userStore.login(applicationKey.value, applicationSecret.value, consumerKey.value).then(() => {
     isLoading.value = false;
+
+    router.push({ name: 'home' });
   });
 };
 </script>
