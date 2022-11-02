@@ -22,7 +22,9 @@ export const useMainStore = defineStore({
         await mailsStore.init();
         this.isLoaded = true;
       } else {
+        console.log('-ok');
         this.isLoaded = true;
+        console.log('ok');
       }
     },
   },
