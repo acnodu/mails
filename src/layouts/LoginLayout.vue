@@ -52,9 +52,11 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { Button, FloatingInput } from '@/components';
 import { useUserStore } from '@/stores/user';
+import { useMainStore } from '@/stores/main';
 
 const router = useRouter();
 const userStore = useUserStore();
+const mainStore = useMainStore();
 
 const isLoading = ref(false);
 
@@ -75,7 +77,10 @@ const login = () => {
   userStore.login(applicationKey.value, applicationSecret.value, consumerKey.value).then(() => {
     isLoading.value = false;
 
-    router.push({ name: 'home' });
+    mainStore.isLoading = true;
+    mainStore.init().then(() => {
+      router.push({ name: 'home' });
+    });
   });
 };
 </script>

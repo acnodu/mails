@@ -13,18 +13,12 @@ export const useMainStore = defineStore({
       const userStore = useUserStore();
 
       await userStore.init();
-      console.log('next');
-      console.log(userStore);
-
       if (userStore.logged) {
-        console.log('loggé');
         const mailsStore = useMailsStore();
         await mailsStore.init();
         this.isLoaded = true;
       } else {
-        console.log('-ok');
         this.isLoaded = true;
-        console.log('ok');
       }
     },
   },

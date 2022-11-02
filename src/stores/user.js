@@ -16,13 +16,10 @@ export const useUserStore = defineStore({
 
   actions: {
     async init() {
-      console.log('init');
       if (this.AK === '' || this.AS === '' || this.CK === '') {
-        console.log('false login');
         return false;
       }
 
-      console.log('set');
       await this.set();
 
       return true;

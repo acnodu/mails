@@ -10,7 +10,7 @@
 <script setup>
 import { computed } from 'vue';
 import { LoadingLayout } from './layouts';
-import { useMainStore } from './stores/main';
+import { useMainStore } from '@/stores/main';
 
 const mainStore = useMainStore();
 const isLoaded = computed(() => mainStore.isLoaded);
