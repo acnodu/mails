@@ -5,7 +5,7 @@ git pull
 
 chmod +x deploy.sh
 
-npm install
+yarn install
 
 yarn build
 
