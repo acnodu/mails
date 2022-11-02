@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col-12 pt-2 pb-2 mb-2 sticky-top bg-black"
+    class="col-12 pt-4 pb-2 mb-2 sticky-top bg-black"
   >
     <div class="row">
       <div class="col-9 pt-4">
