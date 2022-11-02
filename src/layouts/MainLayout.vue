@@ -1,7 +1,7 @@
 <template>
   <Header title="Redirections" />
 
-  <div class="col-12">
+  <div class="col-12 pt-2 pb-5">
     <MailItem
       v-for="(redirection, index) in redirections"
       :key="index"
