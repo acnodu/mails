@@ -1,0 +1,65 @@
+<template>
+  <Header
+    title="Edit"
+    icon="back"
+    :to="{name:'home'}"
+  />
+
+  <div class="col-12">
+    <FloatingInput
+      v-model="currentRedirection.from"
+      label="From:"
+      class="mb-2"
+      :disabled="true"
+    />
+
+    <FloatingInput
+      id="test"
+      v-model="currentRedirection.to"
+      class="mb-4"
+      label="To:"
+    />
+  </div>
+
+  <div class="col-6">
+    <button
+      type="button"
+      class="btn btn-lg w-100 btn-outline-danger"
+    >
+      Cancel
+    </button>
+  </div>
+
+  <div class="col-6">
+    <button
+      type="button"
+      class="btn btn-lg w-100 btn-success"
+    >
+      Save
+    </button>
+  </div>
+
+  <pre>
+  {{ currentRedirection }}
+  </pre>
+</template>
+
+<script setup>
+import { computed, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useMailsStore } from '@/stores/mails';
+import { FloatingInput, Header } from '@/components';
+
+const route = useRoute();
+const router = useRouter();
+
+const mailStore = useMailsStore();
+const mailid = computed(() => route.params.mailid);
+const currentRedirection = computed(() => mailStore.redirections.find((r) => r.id === mailid.value));
+
+onMounted(() => {
+  if (!currentRedirection.value) {
+    router.push({ name: 'home' });
+  }
+});
+</script>
