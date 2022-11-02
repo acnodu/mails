@@ -4,6 +4,8 @@ git pull --rebase
 
 chmod +x deploy.sh
 
+npm install
+
 yarn build
 
 rm -rf /var/www/html/*
