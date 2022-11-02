@@ -7,6 +7,28 @@
     }]"
   />
 
+  <div
+    v-if="redirections.length >= 10"
+    class="col-12"
+  >
+    <div
+      class="input-group mb-3"
+      :class="[searchIsFocused?'input-group-lg':'']"
+    >
+      <span
+        id="basic-addon1"
+        class="input-group-text bg-dark border-0 text-light shadow-none"
+      ><i class="bi bi-search" /></span>
+      <input
+        type="text"
+        class="form-control bg-dark border-0 text-light shadow-none"
+        placeholder="Search"
+        @focus="searchIsFocused = true"
+        @blur="searchIsFocused = false"
+      >
+    </div>
+  </div>
+
   <div class="col-12">
     <MailItem
       v-for="(redirection, index) in redirections"
@@ -17,9 +39,11 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import { MailItem, Header } from '@/components';
+
+const searchIsFocused = ref(false);
 
 const mailsStore = useMailsStore();
 
