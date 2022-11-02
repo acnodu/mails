@@ -5,7 +5,7 @@ export const useMailsStore = defineStore({
   id: 'mails',
   state: () => ({
     domains: [],
-    selectedDomain: 'acnodu.fr',
+    selectedDomain: '',
 
     redirections: [],
   }),
