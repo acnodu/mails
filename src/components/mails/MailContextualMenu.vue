@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-end">
     <button
       type="button"
-      class="btn btn-dark border-dark"
+      class="btn btn-dark text-light"
       data-bs-toggle="dropdown"
       aria-expanded="false"
     >
