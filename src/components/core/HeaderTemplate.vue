@@ -4,7 +4,7 @@
   >
     <div
       v-if="subTitle === null"
-      class="row mt-5"
+      class="row mt-4 pt-3"
     >
       <div class="col-12 ">
         <h1 class="mb-0">
@@ -31,8 +31,7 @@
         </p>
       </div>
       <div
-        class="col-12"
-        style="padding-top: 12px;"
+        class="col-12 pt-1"
       >
         <h1 class="mb-0">
           <b>{{ title }}</b>
