@@ -8,12 +8,6 @@
     >
       <h1 class="h3 mb-3 fw-normal">
         Please sign
-
-        <router-link
-          to="/login"
-        >
-          login
-        </router-link>
       </h1>
       <FloatingInput
         id="AK"
@@ -51,8 +45,6 @@
       </p>
     </main>
   </div>
-
-  {{ userStore }}
 </template>
 
 <script setup>
