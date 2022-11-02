@@ -17,7 +17,6 @@ export const useUserStore = defineStore({
   actions: {
     async init() {
       if (this.AK === '' || this.AS === '' || this.CK === '') {
-        await this.logout();
         return false;
       }
 
