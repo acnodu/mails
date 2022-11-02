@@ -26,6 +26,11 @@
         autocomplete="off"
         @input="search=search.toLowerCase()"
       >
+      <span
+        v-if="search"
+        id="basic-addon1"
+        class="input-group-text bg-dark border-0 text-light shadow-none text-muted"
+      >{{ redirectionsList.length }}/{{ mailsStore.redirections.length }}</span>
     </div>
   </div>
 
@@ -53,7 +58,7 @@ const redirectionsList = computed(() => {
     return list;
   }
 
-  return list.filter((r) => r.from.includes(search.value));
+  return list.filter((r) => r.from.includes(search.value) || r.to.includes(search.value));
 });
 
 const redirections = computed({
