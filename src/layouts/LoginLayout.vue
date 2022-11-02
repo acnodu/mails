@@ -1,7 +1,6 @@
 <template>
   <div
-    class="col col-lg-3 col-10 mt-5"
-    style="margin: auto;"
+    class="col col-12 mt-5"
   >
     <main
       class="form-signin"
