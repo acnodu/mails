@@ -10,7 +10,7 @@
     </button>
 
     <ul
-      class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-none"
+      class="dropdown-menu dropdown-menu-end dropdown-menu-dark shadow-none border-dark"
     >
       <router-link :to="{name: 'editMail', params: {mailid: redirection.id}}">
         <li

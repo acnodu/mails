@@ -6,7 +6,7 @@
 }
 
 .dropdown-menu-dark{
---bs-dropdown-bg: #000;
+    --bs-dropdown-bg: #111111;
 }
 
 .btn-outline-primary {
