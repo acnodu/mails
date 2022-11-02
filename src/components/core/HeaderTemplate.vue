@@ -15,7 +15,7 @@
 
     <div
       v-else
-      class="row mt-4"
+      class="row mt-2"
     >
       <div class="col-12">
         <p
@@ -29,7 +29,7 @@
           {{ subTitle }}
         </p>
       </div>
-      <div class="col-12 pt-1">
+      <div class="col-12 pt-2">
         <h1 class="mb-0">
           <b>{{ title }}</b>
         </h1>
