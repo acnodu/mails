@@ -2,6 +2,11 @@
     --bs-dark-rgb: 26, 27, 29;
     --bs-border-color: #131314;
     --bs-primary-rgb: 80, 117, 215;
+    
+}
+
+.dropdown-menu-dark{
+--bs-dropdown-bg: #1a1b1d;
 }
 
 .btn-outline-primary {
