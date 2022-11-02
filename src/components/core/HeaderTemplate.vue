@@ -15,12 +15,13 @@
 
     <div
       v-else
-      class="row mt-2"
+      class="row mt-3"
     >
       <div class="col-12">
         <p
           class="mb-0"
           style="font-size: 13px;"
+          @click="goTo"
         >
           <i
             class="bi"
@@ -29,7 +30,7 @@
           {{ subTitle }}
         </p>
       </div>
-      <div class="col-12 pt-2">
+      <div class="col-12 pt-3">
         <h1 class="mb-0">
           <b>{{ title }}</b>
         </h1>
@@ -39,9 +40,11 @@
 </template>
 
 <script setup>
-// import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
-defineProps({
+const router = useRouter();
+
+const props = defineProps({
   title: {
     type: String,
     default: '',
@@ -63,9 +66,9 @@ defineProps({
   },
 });
 
-// const goTo = () => {
-//   router.push(props.to);
-// };
+const goTo = () => {
+  router.push(props.to);
+};
 </script>
 
 <style scoped>
