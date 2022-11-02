@@ -40,7 +40,7 @@
         <i
           v-for="(option, index) in options"
           :key="index"
-          :style="`font-size: 30px; margin-left: 10px; color: ${option.color||'white'};`"
+          :style="`font-size: 26px; margin-left: 10px; color: ${option.color||'white'};`"
           :class="option.icon"
           class="bi"
         />
