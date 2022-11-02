@@ -23,6 +23,8 @@
         type="text"
         class="form-control bg-dark border-0 text-light shadow-none"
         placeholder="Search"
+        autocomplete="off"
+        @input="search=search.toLowerCase()"
       >
     </div>
   </div>
