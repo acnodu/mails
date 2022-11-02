@@ -14,12 +14,4 @@ import { useMainStore } from '@/stores/main';
 
 const mainStore = useMainStore();
 const isLoaded = computed(() => mainStore.isLoaded);
-
-// onMounted(() => {
-//   // if (navigator.standalone) {
-//   //   setTimeout(() => {
-//   //     document.location.href = 'http://your.com/whatever.php?randomjunk=1234')
-//   //   }, 1000);
-//   // }
-// });
 </script>

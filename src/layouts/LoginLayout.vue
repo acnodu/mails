@@ -79,6 +79,14 @@ const login = () => {
     });
   });
 };
+
+// onMounted(() => {
+//   if (navigator.standalone) {
+//     setTimeout(() => {
+//       document.location.href = 'http://your.com/whatever.php?randomjunk=1234')
+//     }, 1000);
+//   }
+// });
 </script>
 
 <style>

@@ -2,22 +2,20 @@
   <div
     class="col-12 pb-2 mb-2 sticky-top bg-black"
   >
-    <div
-      v-if="subTitle === null"
-      class="row mt-4 pt-3"
-    >
-      <div class="col-12 ">
+    <div class="row align-items-end">
+      <div
+        v-if="subTitle === null"
+        class="col-8 mt-4 pt-3"
+      >
         <h1 class="mb-0">
           <b>{{ title }}</b>
         </h1>
       </div>
-    </div>
 
-    <div
-      v-else
-      class="row mt-3"
-    >
-      <div class="col-12">
+      <div
+        v-else
+        class="col-8 mt-3"
+      >
         <p
           class="mb-0"
           style="font-size: 13px;"
@@ -29,13 +27,20 @@
           />
           {{ subTitle }}
         </p>
-      </div>
-      <div
-        class="col-12 pt-1"
-      >
-        <h1 class="mb-0">
+
+        <h1 class="mb-0 pt-1">
           <b>{{ title }}</b>
         </h1>
+      </div>
+
+      <div class="col-4 text-end">
+        <i
+          v-for="(option, index) in options"
+          :key="index"
+          :style="`font-size: 25px; margin-left: 10px; color: ${option.color||'white'};`"
+          :class="option.icon"
+          class="bi"
+        />
       </div>
     </div>
   </div>
@@ -60,6 +65,11 @@ const props = defineProps({
   subIcon: {
     type: String,
     default: null,
+  },
+
+  options: {
+    type: Array,
+    default: () => [],
   },
 
   to: {

@@ -1,5 +1,11 @@
 <template>
-  <Header title="Redirections" />
+  <Header
+    title="Redirections"
+    :options="[{
+      icon: 'bi-plus-square',
+      color: '#712cf9'
+    }]"
+  />
 
   <div class="col-12">
     <MailItem
