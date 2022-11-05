@@ -44,6 +44,7 @@ export const useUserStore = defineStore({
         .then((data) => {
           this.logged = true;
           this.infos = data;
+
           return true;
         })
         .catch(() => {
