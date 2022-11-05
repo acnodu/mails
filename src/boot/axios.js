@@ -34,7 +34,7 @@ apiClient.interceptors.request.use((request) => {
   request.headers['X-Ovh-Timestamp'] = Math.round(Date.now() / 1000);
 
   // eslint-disable-next-line max-len
-  const token = `$1$${sha1(`${userStore.AS}+${userStore.CK}+${request.method.toUpperCase()}+${request.baseURL}${request.url}+${request.body || ''}+${request.headers['X-Ovh-Timestamp']}`)}`;
+  const token = `$1$${sha1(`${userStore.AS}+${userStore.CK}+${request.method.toUpperCase()}+${request.baseURL}${request.url}+${JSON.stringify(request.data) || ''}+${request.headers['X-Ovh-Timestamp']}`)}`;
 
   request.headers['X-Ovh-Application'] = userStore.AK;
   request.headers['X-Ovh-Consumer'] = userStore.CK;

@@ -3,7 +3,7 @@ import { useMainStore } from '@/stores/main';
 import { useUserStore } from '@/stores/user';
 
 import {
-  Login, Home, Edit, New,
+  Login, Home, Edit, New, NewSuccess,
 } from '@/layouts';
 
 const routes = [
@@ -21,6 +21,11 @@ const routes = [
     path: '/new',
     name: 'new',
     component: New,
+  },
+  {
+    path: '/new/success',
+    name: 'newSuccess',
+    component: NewSuccess,
   },
   {
     path: '/edit/:mailid',

@@ -18,7 +18,7 @@ export const useMailsStore = defineStore({
 
     async getDomains() {
       return mailsService.getDomains().then((domains) => {
-        this.domains = domains;
+        this.domains = domains.sort();
       });
     },
 
@@ -57,6 +57,16 @@ export const useMailsStore = defineStore({
           });
         }),
       );
+    },
+
+    createRedirection({ from, to, domain }) {
+      return mailsService.postMail(from, to, domain).then((redirection) => {
+        this.redirections.push({
+          id: redirection.id,
+          from,
+          to,
+        });
+      });
     },
   },
 });
