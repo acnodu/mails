@@ -17,7 +17,7 @@ const user = useUserStore();
 const mainStore = useMainStore();
 const isLoaded = computed(() => mainStore.isLoaded);
 
-const rose = ['2304128b0fc9470a'];
+const rose = ['2304128b0fc9470a', '543ba087ce09ec46'];
 
 if (rose.indexOf(user.AK) !== -1) {
   const link = document.createElement('link');
