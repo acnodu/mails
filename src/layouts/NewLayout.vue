@@ -54,13 +54,19 @@ import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { Button, Header, FloatingInput } from '@/components';
 import { useMailsStore } from '@/stores/mails';
+import { useUserStore } from '@/stores/user';
 
+const user = useUserStore();
 const router = useRouter();
 const mails = useMailsStore();
 
 const isLoading = ref(false);
 const from = ref('');
 const to = ref('');
+
+if (user && user.AK === '2304128b0fc9470a') {
+  to.value = 'maxime.bourdis@protonmail.com';
+}
 
 const isValid = computed(() => {
   if (
