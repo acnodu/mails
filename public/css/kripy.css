@@ -1,0 +1,7 @@
+:root {
+    --bs-white-rgb: 190, 46, 221;
+}
+
+.card-body {
+    --bs-card-color: #e056fd;
+}

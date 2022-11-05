@@ -13,21 +13,21 @@
         autocomplete="off"
         type="text"
         autocapitalize="off"
-        label="Application Key"
+        label="Application Key:"
       />
 
       <FloatingInput
         id="AS"
         v-model="applicationSecret"
         type="password"
-        label="Application Secret"
+        label="Application Secret:"
       />
 
       <FloatingInput
         id="CK"
         v-model="consumerKey"
         type="password"
-        label="Consumer Key"
+        label="Consumer Key:"
       />
 
       <Button
