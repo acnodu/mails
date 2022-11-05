@@ -39,29 +39,28 @@
   </div>
 
   <div class="col-6">
-    <button
-      type="button"
-      :disabled="!isValid || isLoading"
+    <Button
       class="btn btn-success w-100"
+      :disabled="!isValid"
+      :loading="isLoading"
+      label="Create"
       @click="createRedirection"
-    >
-      Create
-    </button>
+    />
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { Header, FloatingInput } from '@/components';
+import { Button, Header, FloatingInput } from '@/components';
 import { useMailsStore } from '@/stores/mails';
 
 const router = useRouter();
 const mails = useMailsStore();
 
 const isLoading = ref(false);
-const from = ref('testage@acnodu.fr');
-const to = ref('acnodu@acnodu.fr');
+const from = ref('');
+const to = ref('');
 
 const isValid = computed(() => {
   if (
