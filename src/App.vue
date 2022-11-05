@@ -17,7 +17,9 @@ const user = useUserStore();
 const mainStore = useMainStore();
 const isLoaded = computed(() => mainStore.isLoaded);
 
-if (user.AK === '543ba087ce09ec46') {
+const rose = ['2304128b0fc9470a'];
+
+if (rose.indexOf(user.AK) !== -1) {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.type = 'text/css';

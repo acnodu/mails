@@ -13,7 +13,7 @@
     />
   </div>
 
-  <div class="col-12 px-5 text-center">
+  <div class="col-12 px-2 text-center">
     <p>
       The redirect from "<b>{{ route.query.from }}</b>" to "<b>{{ route.query.to }}</b>" has been created !
     </p>
