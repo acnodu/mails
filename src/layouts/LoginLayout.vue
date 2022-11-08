@@ -1,5 +1,5 @@
 <template>
-  <Header title="Please signn" />
+  <Header title="Please sign" />
 
   <div
     class="col-12"
