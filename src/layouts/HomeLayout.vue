@@ -19,22 +19,19 @@
       class="input-group mb-3"
     >
       <span
-        v-if="searchIsFocus"
-        id="basic-addon1"
-        class="input-group-text bg-dark border-0 text-light shadow-none"
-        @click="search = ''"
-      >
-        <i class="bi bi-x-lg" />
-      </span>
-
-      <span
-        v-else
         id="basic-addon1"
         class="input-group-text bg-dark border-0 text-light shadow-none"
       >
-        <i class="bi bi-search" />
+        <i
+          v-if="!hideHeader"
+          class="bi bi-search"
+        />
+        <i
+          v-else
+          class="bi bi-x-lg"
+          @click="search = ''"
+        />
       </span>
-
       <input
         v-model="search"
         type="text"
