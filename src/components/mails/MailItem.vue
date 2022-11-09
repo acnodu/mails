@@ -1,36 +1,27 @@
 <template>
-  <div
-    class="card bg-dark border-dark text-light mb-2"
-  >
-    <div class="card-body  py-2 ">
-      <div class="row placeholder-glow align-items-center ">
-        <div class="col-10">
-          <p
-            class="card-text mb-0"
-          >
-            {{ from }}
-          </p>
-          <p class="card-text mb-0">
-            <small
-              class="text-muted"
-            >{{ to }}</small>
-          </p>
-        </div>
-
-        <div
-          v-if="isEditable"
-          class="col-2 text-right"
+  <li class="list-group-item">
+    <router-link
+      class="row placeholder-glow align-items-center"
+      :to="{name: 'editMail', params:{mailid:id}}"
+    >
+      <div class="col-10">
+        <p
+          class="card-text mb-0"
         >
-          <MailContextualMenu :redirection="redirection" />
-        </div>
+          {{ from }}
+        </p>
+        <p class="card-text mb-0">
+          <small
+            class="text-muted"
+          >{{ to }}</small>
+        </p>
       </div>
-    </div>
-  </div>
+    </router-link>
+  </li>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { MailContextualMenu } from '@/components';
 
 const props = defineProps({
   redirection: {
@@ -40,12 +31,13 @@ const props = defineProps({
 });
 
 const to = computed(() => (props.redirection.to || ''));
+const id = computed(() => (props.redirection.id || ''));
 const from = computed(() => (props.redirection.from ? props.redirection.from.split('@')[0] : ''));
-
-const isEditable = computed(() => {
-  if (to.value === '' || from.value === '') {
-    return false;
-  }
-  return true;
-});
 </script>
+
+<style scoped>
+a, a:hover{
+  color: inherit;
+  text-decoration: none;
+}
+</style>

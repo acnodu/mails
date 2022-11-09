@@ -50,11 +50,15 @@
   </div>
 
   <div class="col-12">
-    <MailItem
-      v-for="(redirection, index) in redirections"
-      :key="index"
-      :redirection="redirection"
-    />
+    <div class="card text-light border-0">
+      <ul class="list-group list-group-flush">
+        <MailItem
+          v-for="(redirection, index) in redirections"
+          :key="index"
+          :redirection="redirection"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -103,15 +107,15 @@ const redirections = computed({
 .animatedHidden{
   top: -100px;
   position: absolute;
-  transition: all 0.2s linear;
+  transition: all 0.15s linear;
 }
 
 .normal{
   margin-top: 82.73px;
-  transition: all 0.2s linear;
+  transition: all 0.15s linear;
 }
 
 .test{
-  transition: all 0.2s linear;
+  transition: all 0.15s linear;
 }
 </style>
