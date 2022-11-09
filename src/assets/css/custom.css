@@ -40,6 +40,7 @@
 .list-group-item{
     --bs-list-group-color: var(--bs-light);
     --bs-list-group-bg: #1A1B1D;
+    --bs-list-group-border-radius: .5rem;
     --bs-list-group-border-color: rgba(0, 0, 0, 0.25);
 }
 
