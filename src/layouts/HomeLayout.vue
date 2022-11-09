@@ -11,11 +11,11 @@
   />
 
   <div
-    class="col-12"
-    :class="[hideHeader?'test mt-3':'normal']"
+    class="col-12 sticky-top pb-3 bg-black"
+    :class="[hideHeader?'test pt-3':'normal']"
   >
     <div
-      class="input-group mb-3"
+      class="input-group"
     >
       <span
         id="basic-addon1"
@@ -108,7 +108,6 @@ const redirections = computed({
 
 .normal{
   margin-top: 82.73px;
-
   transition: all 0.2s linear;
 }
 
