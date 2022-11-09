@@ -6,21 +6,34 @@
       color: '#6B94D8',
       to: {name:'new'}
     }]"
-    :class="[searchIsFocus?'animatedHidden':'header']"
+    :class="[hideHeader?'animatedHidden':'header']"
   />
 
   <div
     v-if="mailsStore.redirections.length >= 8"
     class="col-12"
-    :class="[searchIsFocus?'test mt-3':'normal']"
+    :class="[hideHeader?'test mt-3':'normal']"
   >
     <div
       class="input-group mb-3"
     >
       <span
+        v-if="search === ''"
         id="basic-addon1"
         class="input-group-text bg-dark border-0 text-light shadow-none"
-      ><i class="bi bi-search" /></span>
+      >
+        <i class="bi bi-search" />
+      </span>
+
+      <span
+        v-else
+        id="basic-addon1"
+        class="input-group-text bg-dark border-0 text-light shadow-none"
+        @click="search = ''"
+      >
+        <i class="bi bi-x-lg" />
+      </span>
+
       <input
         v-model="search"
         type="text"
@@ -56,6 +69,14 @@ import { MailItem, Header } from '@/components';
 const searchIsFocus = ref(false);
 const search = ref('');
 const mailsStore = useMailsStore();
+
+const hideHeader = computed(() => {
+  if (searchIsFocus.value || search.value !== '') {
+    return true;
+  }
+
+  return false;
+});
 
 const redirectionsList = computed(() => {
   const list = mailsStore.redirections;
