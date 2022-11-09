@@ -6,11 +6,13 @@
       color: '#6B94D8',
       to: {name:'new'}
     }]"
+    :class="[searchIsFocus?'animatedHidden':'header']"
   />
 
   <div
     v-if="mailsStore.redirections.length >= 8"
     class="col-12"
+    :class="[searchIsFocus?'test mt-3':'normal']"
   >
     <div
       class="input-group mb-3"
@@ -25,6 +27,8 @@
         class="form-control bg-dark border-0 text-light shadow-none"
         placeholder="Search"
         autocomplete="off"
+        @focus="searchIsFocus=true"
+        @blur="searchIsFocus=false"
         @input="search=search.toLowerCase()"
       >
       <span
@@ -49,6 +53,7 @@ import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import { MailItem, Header } from '@/components';
 
+const searchIsFocus = ref(false);
 const search = ref('');
 const mailsStore = useMailsStore();
 
@@ -70,3 +75,26 @@ const redirections = computed({
 });
 
 </script>
+
+<style scoped>
+.header{
+  top: 0;
+  transition: all 0.2s linear;
+}
+
+.animatedHidden{
+  top: -100px;
+  position: absolute;
+  transition: all 0.2s linear;
+}
+
+.normal{
+  margin-top: 82.73px;
+
+  transition: all 0.2s linear;
+}
+
+.test{
+  transition: all 0.2s linear;
+}
+</style>

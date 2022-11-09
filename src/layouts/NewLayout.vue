@@ -7,12 +7,6 @@
   />
 
   <div class="col-12">
-    <!-- <FloatingInput
-
-      type="text"
-      label="From:"
-      class="mb-2"
-    />-->
     <div class="input-group input-group-lg mb-2">
       <input
         v-model="from"
@@ -27,7 +21,7 @@
       <span class="input-group-text bg-dark border-dark text-light shadow-none">@{{ mails.selectedDomain }}</span>
     </div>
 
-    <div class="input-group input-group-lg mb-2">
+    <div class="input-group input-group-lg mb-4">
       <input
         v-model="to"
         type="text"
@@ -42,7 +36,7 @@
   <div class="col-6">
     <button
       type="button"
-      class="btn btn-outline-danger w-100"
+      class="btn btn-lg btn-outline-danger w-100"
       :disabled="isLoading"
     >
       Cancel
@@ -51,7 +45,7 @@
 
   <div class="col-6">
     <Button
-      class="btn btn-success w-100"
+      class="btn btn-lg btn-success w-100"
       :disabled="!isValid"
       :loading="isLoading"
       label="Create"
