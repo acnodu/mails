@@ -11,7 +11,6 @@
   />
 
   <div
-    v-if="mailsStore.redirections.length >= 8"
     class="col-12"
     :class="[hideHeader?'test mt-3':'normal']"
   >
