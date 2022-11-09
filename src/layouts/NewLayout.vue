@@ -7,25 +7,36 @@
   />
 
   <div class="col-12">
-    <FloatingInput
-      v-model="from"
-      autocomplete="off"
+    <!-- <FloatingInput
+
       type="text"
-      autocapitalize="off"
       label="From:"
       class="mb-2"
-      :disabled="isLoading"
-    />
+    />-->
+    <div class="input-group input-group-lg mb-2">
+      <input
+        v-model="from"
+        autocomplete="off"
+        autocapitalize="off"
+        :disabled="isLoading"
+        type="text"
+        class="form-control bg-dark border-dark text-light shadow-none"
+        name="code1"
+        placeholder="From:"
+      >
+      <span class="input-group-text bg-dark border-dark text-light shadow-none">@{{ mails.selectedDomain }}</span>
+    </div>
 
-    <FloatingInput
-      v-model="to"
-      autocomplete="off"
-      type="text"
-      autocapitalize="off"
-      label="To:"
-      class="mb-2"
-      :disabled="isLoading"
-    />
+    <div class="input-group input-group-lg mb-2">
+      <input
+        v-model="to"
+        type="text"
+        class="form-control bg-dark border-dark text-light shadow-none"
+        name="code1"
+        placeholder="To:"
+        :disabled="isLoading"
+      >
+    </div>
   </div>
 
   <div class="col-6">
@@ -52,7 +63,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { Button, Header, FloatingInput } from '@/components';
+import { Button, Header } from '@/components';
 import { useMailsStore } from '@/stores/mails';
 import { useUserStore } from '@/stores/user';
 
@@ -69,10 +80,7 @@ if (user && user.AK === '2304128b0fc9470a') {
 }
 
 const isValid = computed(() => {
-  if (
-    from.value.slice(-`@${mails.selectedDomain}`.length) === `@${mails.selectedDomain}`
-    && from.value.length > mails.selectedDomain.length + 1
-    && to.value) {
+  if (from.value && to.value) {
     return true;
   }
 
@@ -83,7 +91,7 @@ const createRedirection = () => {
   isLoading.value = true;
 
   mails.createRedirection({
-    from: from.value,
+    from: `${from.value}@${mails.selectedDomain}`,
     to: to.value,
     domain: mails.selectedDomain,
   }).then(() => {
