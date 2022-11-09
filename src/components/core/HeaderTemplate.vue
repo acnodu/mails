@@ -1,6 +1,7 @@
 <template>
   <div
-    class="col-12 pb-2 mb-2 fixed-top bg-black"
+    class="col-12 pb-2 mb-2 bg-black"
+    :class="[animable?'fixed-top':'sticky-top']"
   >
     <div class="row align-items-end">
       <div
@@ -79,6 +80,11 @@ const props = defineProps({
   to: {
     type: Object,
     default: () => {},
+  },
+
+  animable: {
+    type: Boolean,
+    default: false,
   },
 });
 

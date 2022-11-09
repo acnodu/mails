@@ -6,6 +6,7 @@
       color: '#6B94D8',
       to: {name:'new'}
     }]"
+    :animable="true"
     :class="[hideHeader?'animatedHidden':'header']"
   />
 
@@ -18,20 +19,20 @@
       class="input-group mb-3"
     >
       <span
-        v-if="search === ''"
+        v-if="searchIsFocus"
         id="basic-addon1"
         class="input-group-text bg-dark border-0 text-light shadow-none"
+        @click="search = ''"
       >
-        <i class="bi bi-search" />
+        <i class="bi bi-x-lg" />
       </span>
 
       <span
         v-else
         id="basic-addon1"
         class="input-group-text bg-dark border-0 text-light shadow-none"
-        @click="search = ''"
       >
-        <i class="bi bi-x-lg" />
+        <i class="bi bi-search" />
       </span>
 
       <input
