@@ -32,7 +32,6 @@ jobs:
         write-mode: overwrite
         contents: |
           "${{env.VERSION}}"
-      with:
         path: ./src/assets/version.json
         write-mode: overwrite
         contents: |
