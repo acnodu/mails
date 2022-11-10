@@ -35,7 +35,7 @@ services:
     image: 'acnodu/mails:latest'
     restart: unless-stopped
     ports:
-      - '5134:8080
+      - '5134:8080'
     environment:
       - APP_KEY=#Your Application Key
       - APP_SECRET=#Your Application Secret

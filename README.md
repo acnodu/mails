@@ -18,10 +18,16 @@ $ exit
 version: '3.8'
 services:
   app:
+    container_name: mails
     image: 'acnodu/mails:latest'
     restart: unless-stopped
     ports:
       - '5134:8080'
+    environment:
+      - APP_KEY=#Your Application Key
+      - APP_SECRET=#Your Application Secret
+      - CONSUMER_KEY=#Your Consumer Key
+      - AUTH_MD5_PASSWORD=#Your encrypted password in md5
 ```
 
 ### 3. Bring up your stack by running
