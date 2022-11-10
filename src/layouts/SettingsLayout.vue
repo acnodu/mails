@@ -8,9 +8,7 @@
 
   {{ version }}
 
-  <pre>
-{{ storeTest }}
-    </pre>
+  {{ storeTest.updateAvailable }}
   <br>
 
   <div @click="forceUpdate">
