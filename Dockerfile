@@ -12,7 +12,7 @@ RUN npm run build
 # This saves a lot of disk space.
 FROM node:lts-alpine
 RUN npm install -g http-server
-COPY --from=build_app /app/dist /app
+COPY --from=build_app /app/dist /app/
 
 WORKDIR /app
 
