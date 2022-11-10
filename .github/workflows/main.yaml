@@ -28,10 +28,10 @@ jobs:
     - name: Overwrite file
       uses: "DamianReeves/write-file-action@master"
       with:
-        path: ./public/version
+        path: ./public/version.json
         write-mode: overwrite
         contents: |
-          ${{env.VERSION}}
+          "${{env.VERSION}}"
 
     # Build & Publish
     - name: Build & Publish Docker Image (acnodu/${{env.NAME}}:${{ env.VERSION }})
