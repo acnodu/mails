@@ -30,7 +30,7 @@ export const useMainStore = defineStore({
 
     async checkUpdate() {
       const distVersion = await axios.get(
-        'https://raw.githubusercontent.com/acnodu/mails/main/package.json?token=GHSAT0AAAAAABQEIY362WZVZNRLTSB4U3QYY3NABAA',
+        'https://raw.githubusercontent.com/acnodu/mails/main/jsconfig.json',
       );
 
       if (distVersion.status !== 200) {
