@@ -9,7 +9,7 @@
   {{ version }}
 
   <pre>
-{{ store }}
+{{ storeTest }}
     </pre>
   <br>
 
@@ -23,7 +23,7 @@ import { Header } from '@/components';
 import version from '@/assets/version.json';
 import { useMainStore } from '@/stores/main';
 
-const store = useMainStore();
+const storeTest = useMainStore();
 
 const forceUpdate = () => {
   window.location.reload(true);
