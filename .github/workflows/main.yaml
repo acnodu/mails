@@ -26,7 +26,7 @@ jobs:
     - run: echo NAME=$(cat ./package.json | jq -r .name) >> $GITHUB_ENV
     
     # Build & Publish
-    - name: Build & Publish Docker Image
+    - name: Build & Publish Docker Image (acnodu/${{env.NAME}}:${{ env.VERSION }})
       uses: docker/build-push-action@v2
       with:
         push: true
