@@ -1,39 +1,79 @@
-name: Publish Docker image
+name: Build & Publish Docker Image
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
   push:
-    tags:
-      - "**"
+    branches:
+      - master
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
-      
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      
-      - name: Build and Push (latest)
-        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mails:latest
+    - uses: actions/checkout@v2
+      with:
+        ref: production
 
-      - name: Build and Push New Release
-        if: github.event_name == 'release'
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/mails:${{ github.event.release.tag_name }}
-          labels: ${{ steps.meta.outputs.labels }}
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+          
+    # Set environment variables
+    - run: echo VERSION=$(cat ./package.json | jq -r .version) >> $GITHUB_ENV
+    
+    # Build & Publish
+    - name: Build & Publish Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
+        tags: acnodu/mails:latest, acnodu/mails:${{ env.VERSION }}
+
+# name: Publish Docker image
+
+# on:
+#   release:
+#     types: [published]
+#   push:
+#     tags:
+#       - "**"
+
+# jobs:
+#   push_to_registry:
+#     name: Push Docker image to Docker Hub
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out the repo
+#         uses: actions/checkout@v3
+      
+#       - name: Log in to Docker Hub
+#         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+      
+#       - name: Build and Push (latest)
+#         if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+#         uses: docker/build-push-action@v2
+#         with:
+#           context: .
+#           push: true
+#           tags: ${{ secrets.DOCKER_USERNAME }}/mails:latest
+
+#       - name: Build and Push New Release
+#         if: github.event_name == 'release'
+#         uses: docker/build-push-action@v2
+#         with:
+#           context: .
+#           push: true
+#           tags: ${{ secrets.DOCKER_USERNAME }}/mails:${{ github.event.release.tag_name }}
+#           labels: ${{ steps.meta.outputs.labels }}
