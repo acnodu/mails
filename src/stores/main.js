@@ -8,25 +8,50 @@ export const useMainStore = defineStore({
   id: 'main',
   state: () => ({
     isLoaded: false,
+
+    currentVersion: version,
+    updateAvailable: false,
   }),
 
   actions: {
     async init() {
-      const distVersion = await axios.get('/version.json');
-      if (distVersion.data !== version) {
-        window.location.reload(true);
+      await this.checkLocalVersion();
+      this.updateAvailable = await this.checkUpdate();
+      const userStore = useUserStore();
+      await userStore.init();
+      if (userStore.logged) {
+        const mailsStore = useMailsStore();
+        await mailsStore.init();
+        this.isLoaded = true;
       } else {
-        const userStore = useUserStore();
-
-        await userStore.init();
-        if (userStore.logged) {
-          const mailsStore = useMailsStore();
-          await mailsStore.init();
-          this.isLoaded = true;
-        } else {
-          this.isLoaded = true;
-        }
+        this.isLoaded = true;
       }
+    },
+
+    async checkUpdate() {
+      const distVersion = await axios.get(
+        'https://raw.githubusercontent.com/acnodu/mails/main/package.json?token=GHSAT0AAAAAABQEIY362WZVZNRLTSB4U3QYY3NABAA',
+      );
+
+      if (distVersion.status !== 200) {
+        return false;
+      }
+
+      if (distVersion.data.version === this.currentVersion) {
+        return false;
+      }
+
+      return true;
+    },
+
+    async checkLocalVersion() {
+      const localVersion = await axios.get('/version.json');
+
+      if (localVersion.data !== this.currentVersion) {
+        window.location.reload(true);
+        return false;
+      }
+      return true;
     },
   },
 });
