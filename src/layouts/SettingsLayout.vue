@@ -11,6 +11,11 @@
   <pre>
 {{ store }}
     </pre>
+  <br>
+
+  <div @click="forceUpdate">
+    Force Update
+  </div>
 </template>
 
 <script setup>
@@ -19,4 +24,8 @@ import version from '@/assets/version.json';
 import { useMainStore } from '@/stores/main';
 
 const store = useMainStore();
+
+const forceUpdate = () => {
+  window.location.reload(true);
+};
 </script>
