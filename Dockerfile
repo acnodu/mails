@@ -11,14 +11,11 @@ RUN npm run build
 # Copy build result to a new image.
 # This saves a lot of disk space.
 FROM node:lts-alpine
-
 RUN npm install -g http-server
-RUN apk update && apk add bash
 
 COPY --from=build_app /app/dist/ /app
 
 WORKDIR /app
-
 EXPOSE 8080
 
 CMD [ "http-server", "." ]

@@ -1,11 +1,17 @@
 <template>
   <Header
     title="Redirections"
-    :options="[{
-      icon: 'bi-plus-square',
-      color: '#6B94D8',
-      to: {name:'new'}
-    }]"
+    :options="[
+      {
+        icon: 'bi-plus-square',
+        color: '#6B94D8',
+        to: {name:'new'}
+      },
+      {
+        icon: 'bi-gear',
+        color: '#6D7A6C',
+        to: {name:'settings'}
+      }]"
     :animable="true"
     :class="[hideHeader?'animatedHidden':'header']"
   />
@@ -60,12 +66,17 @@
       </ul>
     </div>
   </div>
+
+  <div class="col-12 text-center text-muted py-3">
+    Application version: {{ version }}
+  </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import { MailItem, Header } from '@/components';
+import version from '@/assets/version.json';
 
 const searchIsFocus = ref(false);
 const search = ref('');
