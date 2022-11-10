@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -29,6 +29,7 @@ jobs:
           
     # Set environment variables
     - run: echo VERSION=$(cat ./package.json | jq -r .version) >> $GITHUB_ENV
+    - run: echo NAME=$(cat ./package.json | jq -r .name) >> $GITHUB_ENV
     
     # Build & Publish
     - name: Build & Publish Docker Image
@@ -36,7 +37,7 @@ jobs:
       with:
         push: true
         platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
-        tags: acnodu/mails:latest, acnodu/mails:${{ env.VERSION }}
+        tags: acnodu/${NAME}:latest, acnodu/${NAME}:${{ env.VERSION }}
 
 # name: Publish Docker image
 
