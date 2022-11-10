@@ -1,8 +1,9 @@
-import { defineStore } from 'pinia';
 import axios from 'axios';
+import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
+import version from '@/assets/version.json';
 import { useUserStore } from '@/stores/user';
 import { useMailsStore } from '@/stores/mails';
-import version from '@/assets/version.json';
 
 export const useMainStore = defineStore({
   id: 'main',
@@ -11,21 +12,23 @@ export const useMainStore = defineStore({
 
     currentVersion: version,
     updateAvailable: false,
+    showUpdateMessage: useStorage('hideUpdateMessage', true),
+    refreshIfUpdate: useStorage('refreshIfUpdate', true),
   }),
 
   actions: {
     async init() {
-      await this.checkLocalVersion();
-      this.updateAvailable = await this.checkUpdate();
       const userStore = useUserStore();
+      const mailsStore = useMailsStore();
+
+      await this.checkUpdate();
       await userStore.init();
+
       if (userStore.logged) {
-        const mailsStore = useMailsStore();
         await mailsStore.init();
-        this.isLoaded = true;
-      } else {
-        this.isLoaded = true;
       }
+
+      this.isLoaded = true;
     },
 
     async checkUpdate() {
@@ -34,28 +37,29 @@ export const useMainStore = defineStore({
       );
 
       if (distVersion.status !== 200) {
-        console.log('error');
         return false;
       }
 
-      if (distVersion.data.version === this.currentVersion) {
-        console.log('same version');
-        console.log(distVersion.data.version);
+      if (this.currentVersion === '0.0.0' || this.currentVersion === distVersion.data.version) {
+        this.showUpdateMessage = true;
+        this.refreshIfUpdate = true;
         return false;
       }
 
-      console.log('update');
-      return true;
-    },
-
-    async checkLocalVersion() {
-      const localVersion = await axios.get('/version.json');
-
-      if (localVersion.data !== this.currentVersion) {
+      if (this.refreshIfUpdate) {
+        this.refreshIfUpdate = false;
         window.location.reload(true);
-        return false;
+        return true;
       }
+
+      this.updateAvailable = true;
+      this.refreshIfUpdate = true;
       return true;
     },
+  },
+
+  persistence: {
+    enable: true,
+    mode: 'localStorage',
   },
 });

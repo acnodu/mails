@@ -68,7 +68,7 @@
   </div>
 
   <div class="col-12 text-center text-muted py-3">
-    <i style="font-size: 12px;">Application version: {{ version }}</i>
+    <i style="font-size: 10px;">Application version: {{ version }}</i>
   </div>
 </template>
 

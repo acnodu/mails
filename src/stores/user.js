@@ -2,43 +2,47 @@ import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { userService } from '@/services';
 
+const md5 = require('md5');
+
 export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
     logged: false,
 
-    AK: useStorage('AK', ''),
-    AS: useStorage('AS', ''),
-    CK: useStorage('CK', ''),
+    loginStep: '',
 
+    AK: process.env.APP_KEY || process.env.VUE_APP_APP_KEY,
+    AS: process.env.APP_SECRET || process.env.VUE_APP_APP_SECRET,
+    CK: process.env.CONSUMER_KEY || process.env.VUE_APP_CONSUMER_KEY,
+    ENV_PASSWORD: process.env.AUTH_MD5_PASSWORD || process.env.VUE_APP_AUTH_MD5_PASSWORD,
+
+    password: useStorage('password', ''),
     infos: {},
   }),
 
   actions: {
     async init() {
-      if (this.AK === '' || this.AS === '' || this.CK === '') {
+      if (this.password === '' || this.password !== this.ENV_PASSWORD) {
+        this.loginStep = 'password';
         return false;
       }
 
-      await this.set();
+      this.loginStep = 'ovhCredentials';
 
+      await this.setUserInfos();
       return true;
     },
 
-    async login(AK, AS, CK) {
-      this.AK = AK;
-      this.AS = AS;
-      this.CK = CK;
+    async login(password) {
+      if (md5(password) === this.ENV_PASSWORD) {
+        this.password = md5(password);
+        return true;
+      }
 
-      return this.set()
-        .then(() => true)
-        .catch(() => {
-          this.logout();
-          return false;
-        });
+      return false;
     },
 
-    async set() {
+    async setUserInfos() {
       return userService
         .me()
         .then((data) => {
@@ -47,16 +51,15 @@ export const useUserStore = defineStore({
 
           return true;
         })
-        .catch(() => {
-          this.logout();
-        });
+        .catch(() => false);
     },
 
     async logout() {
       this.logged = false;
-      this.AK = '';
-      this.AS = '';
-      this.CK = '';
+      this.passwordIsGood = false;
+      this.ovhCredentialsAreGood = false;
+
+      this.password = '';
       this.infos = {};
     },
   },

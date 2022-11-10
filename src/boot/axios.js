@@ -23,7 +23,9 @@ export function displayApiCallError(error) {
        && Object.prototype.hasOwnProperty.call(error, 'response')
        && Object.prototype.hasOwnProperty.call(error.response, 'data')
        && Object.prototype.hasOwnProperty.call(error.response.data, 'message')) {
-    alert(error.response.data.message);
+    if (error.response.data.message !== 'This application key is invalid') {
+      alert(error.response.data.message);
+    }
   }
   return Promise.reject(error);
 }
