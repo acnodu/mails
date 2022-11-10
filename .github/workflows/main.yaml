@@ -32,6 +32,10 @@ jobs:
         write-mode: overwrite
         contents: |
           "${{env.VERSION}}"
+      path: ./src/assets/version.json
+        write-mode: overwrite
+        contents: |
+          "${{env.VERSION}}"
 
     # Build & Publish
     - name: Build & Publish Docker Image (acnodu/${{env.NAME}}:${{ env.VERSION }})
