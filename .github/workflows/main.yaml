@@ -25,6 +25,14 @@ jobs:
     - run: echo VERSION=$(cat ./package.json | jq -r .version) >> $GITHUB_ENV
     - run: echo NAME=$(cat ./package.json | jq -r .name) >> $GITHUB_ENV
     
+    - name: Overwrite file
+      uses: "DamianReeves/write-file-action@master"
+      with:
+        path: ./public/version
+        write-mode: overwrite
+        contents: |
+          ${{env.VERSION}}
+
     # Build & Publish
     - name: Build & Publish Docker Image (acnodu/${{env.NAME}}:${{ env.VERSION }})
       uses: docker/build-push-action@v2
