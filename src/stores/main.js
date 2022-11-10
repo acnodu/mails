@@ -34,13 +34,17 @@ export const useMainStore = defineStore({
       );
 
       if (distVersion.status !== 200) {
+        console.log('error');
         return false;
       }
 
       if (distVersion.data.version === this.currentVersion) {
+        console.log('same version');
+        console.log(distVersion.data.version);
         return false;
       }
 
+      console.log('update');
       return true;
     },
 
