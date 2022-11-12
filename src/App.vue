@@ -28,6 +28,5 @@ if (rose.indexOf(user.AK) !== -1) {
   document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-console.log(process);
 console.log(process.env);
 </script>
