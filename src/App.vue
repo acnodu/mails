@@ -28,5 +28,5 @@ if (rose.indexOf(user.AK) !== -1) {
   document.getElementsByTagName('head')[0].appendChild(link);
 }
 
-console.log(process.env);
+console.log(window.AUTH_MD5_PASSWORD);
 </script>
