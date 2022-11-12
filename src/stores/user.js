@@ -11,10 +11,10 @@ export const useUserStore = defineStore({
 
     loginStep: '',
 
-    AK: process.env.APP_KEY || process.env.VUE_APP_APP_KEY,
-    AS: process.env.APP_SECRET || process.env.VUE_APP_APP_SECRET,
-    CK: process.env.CONSUMER_KEY || process.env.VUE_APP_CONSUMER_KEY,
-    ENV_PASSWORD: process.env.AUTH_MD5_PASSWORD || process.env.VUE_APP_AUTH_MD5_PASSWORD,
+    AK: process.env.VUE_APP_APP_KEY || 'ENV_APP_KEY',
+    AS: process.env.VUE_APP_APP_SECRET || 'ENV_APP_SECRET',
+    CK: process.env.VUE_APP_CONSUMER_KEY || 'ENV_CONSUMER_KEY',
+    ENV_PASSWORD: process.env.VUE_APP_AUTH_MD5_PASSWORD || 'ENV_AUTH_MD5_PASSWORD',
 
     password: useStorage('password', ''),
     infos: {},
