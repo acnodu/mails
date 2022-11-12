@@ -27,7 +27,4 @@ if (rose.indexOf(user.AK) !== -1) {
 
   document.getElementsByTagName('head')[0].appendChild(link);
 }
-const serverURL = 'VUE_APP_SERVER_URL';
-console.log(serverURL);
-console.log(process.env);
 </script>
