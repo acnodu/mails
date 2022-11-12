@@ -20,6 +20,4 @@ WORKDIR /app
 EXPOSE 8080
 
 RUN chmod +x /entrypoint.sh
-RUN /entrypoint.sh
-
-CMD [ "http-server", "." ]
+ENTRYPOINT ["/entrypoint.sh"]
