@@ -67,11 +67,7 @@ const mails = useMailsStore();
 
 const isLoading = ref(false);
 const from = ref('');
-const to = ref('');
-
-if (user && user.AK === '2304128b0fc9470a') {
-  to.value = 'maxime.bourdis@protonmail.com';
-}
+const to = ref(user.DEFAULT_FORWARD || '');
 
 const isValid = computed(() => {
   if (from.value && to.value) {

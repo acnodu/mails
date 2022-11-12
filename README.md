@@ -28,6 +28,9 @@ services:
       APP_SECRET: #Your Application Secret
       CONSUMER_KEY: #Your Consumer Key
       AUTH_MD5_PASSWORD: #Your encrypted password in md5
+
+      # OPTIONAL
+      ENV_DEFAULT_FORWARD: #Default forwarding email
 ```
 
 ### 3. Bring up your stack by running

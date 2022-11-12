@@ -16,6 +16,8 @@ export const useUserStore = defineStore({
     CK: process.env.VUE_APP_CONSUMER_KEY || 'ENV_CONSUMER_KEY',
     ENV_PASSWORD: process.env.VUE_APP_AUTH_MD5_PASSWORD || 'ENV_AUTH_MD5_PASSWORD',
 
+    DEFAULT_FORWARD: process.env.VUE_APP_DEFAULT_FORWARD || 'ENV_DEFAULT_FORWARD',
+
     password: useStorage('password', ''),
     infos: {},
   }),

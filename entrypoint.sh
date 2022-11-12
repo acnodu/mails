@@ -11,6 +11,7 @@ do
   sed -i 's|ENV_APP_SECRET|'${APP_SECRET}'|g' $file
   sed -i 's|ENV_CONSUMER_KEY|'${CONSUMER_KEY}'|g' $file
   sed -i 's|ENV_AUTH_MD5_PASSWORD|'${AUTH_MD5_PASSWORD}'|g' $file
+  sed -i 's|ENV_DEFAULT_FORWARD|'${ENV_DEFAULT_FORWARD}'|g' $file
 done
 
 http-server .
