@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT_DIR=/usr/share/nginx/html
+ROOT_DIR=/app
 
 echo "Replacing env constants in JS"
 for file in $ROOT_DIR/js/app.*.js* $ROOT_DIR/index.html $ROOT_DIR/precache-manifest*.js;
