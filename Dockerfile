@@ -19,7 +19,7 @@ COPY --from=build_app /app/entrypoint.sh /app
 WORKDIR /app
 EXPOSE 8080
 
-RUN chmod +x ./entrypoint.sh
-RUN ./entrypoint.sh
+RUN chmod +x entrypoint.sh
+RUN entrypoint.sh
 
 CMD [ "http-server", "." ]
