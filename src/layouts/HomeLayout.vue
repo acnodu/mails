@@ -9,7 +9,7 @@
       },
       {
         icon: 'bi-gear',
-        color: 'red',
+        color: '#9b59b6',
         to: {name:'settings'}
       }]"
     :animable="true"
