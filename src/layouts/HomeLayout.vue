@@ -3,14 +3,9 @@
     title="Redirections"
     :options="[
       {
-        icon: 'bi-plus-square',
+        icon: 'bi-plus-circle',
         color: '#6B94D8',
         to: {name:'new'}
-      },
-      {
-        icon: 'bi-gear',
-        color: '#9b59b6',
-        to: {name:'settings'}
       }]"
     :animable="true"
     :class="[hideHeader?'animatedHidden':'header']"
