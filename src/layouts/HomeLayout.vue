@@ -1,22 +1,10 @@
 <template>
-  <HomeOffcanvas />
-
-  <div class="col-12">
-    <h2
-      class="mb-0"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasTop"
-      aria-controls="offcanvasTop"
-    >
-      {{ mailsStore.selectedDomain }} <i
-        style="font-size: 12px;"
-        class="bi bi-chevron-down"
-      />
-    </h2>
-  </div>
+  <HomeHeader
+    :domain="mailsStore.selectedDomain"
+  />
 
   <div
-    class="col-12 sticky-top pb-3 bg-black"
+    class="col-12 sticky-top mb-3 bg-black"
     :class="[hideHeader?'test pt-3':'normal']"
   >
     <div
@@ -54,6 +42,8 @@
     </div>
   </div>
 
+  <UpdateAlert />
+
   <div class="col-12">
     <div class="card text-light border-0">
       <ul class="list-group list-group-flush">
@@ -67,14 +57,16 @@
   </div>
 
   <div class="col-12 text-center text-muted py-3">
-    <i style="font-size: 10px;">Application version: {{ version }}</i>
+    <i style="font-size: 10px;">Application version: <span @click="forceReload">{{ version }}</span></i>
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
-import { MailItem, HomeOffcanvas } from '@/components';
+import {
+  MailItem, HomeHeader, UpdateAlert,
+} from '@/components';
 import version from '@/assets/version.json';
 
 const searchIsFocus = ref(false);
@@ -105,6 +97,10 @@ const redirections = computed({
     return redirectionsList.value.sort((a, b) => ((a.from > b.from) ? 1 : ((b.from > a.from) ? -1 : 0)));
   },
 });
+
+const forceReload = () => {
+  window.location.reload(true);
+};
 
 </script>
 

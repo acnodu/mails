@@ -40,7 +40,7 @@ export const useMainStore = defineStore({
         return false;
       }
 
-      if (this.currentVersion === '0.0.0' || this.currentVersion === distVersion.data.version) {
+      if (this.currentVersion === distVersion.data.version) {
         this.showUpdateMessage = true;
         this.refreshIfUpdate = true;
         return false;

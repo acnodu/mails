@@ -6,9 +6,9 @@
     aria-labelledby="offcanvasTopLabel"
   >
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title">
+      <h2 class="offcanvas-title">
         Select domain
-      </h5>
+      </h2>
       <i
         id="close"
         class="bi bi-x-circle"
@@ -25,7 +25,7 @@
           :key="index"
           class="col-12"
         >
-          <h6
+          <h5
             class="mb-3 row"
             @click="setNewDomain(domain)"
           >
@@ -38,13 +38,16 @@
 
               <i
                 v-if="!isLoading && domain === mailStore.selectedDomain"
-                class="bi bi-check-lg text-success"
+                class="bi bi-arrow-right text-success"
               />
             </div>
-            <div class="col">
+            <div
+              class="col"
+              :class="[domain === mailStore.selectedDomain?'text-success':'']"
+            >
               {{ domain }}
             </div>
-          </h6>
+          </h5>
         </div>
       </div>
     </div>
@@ -59,13 +62,15 @@ const mailStore = useMailsStore();
 const isLoading = ref(false);
 
 const setNewDomain = (domain) => {
-  if (!isLoading.value) {
-    isLoading.value = true;
+  if (domain !== mailStore.selectedDomain) {
+    if (!isLoading.value) {
+      isLoading.value = true;
 
-    mailStore.setSelectedDomain(domain).then(() => {
-      document.getElementById('close').click();
-      isLoading.value = false;
-    });
+      mailStore.setSelectedDomain(domain).then(() => {
+        document.getElementById('close').click();
+        isLoading.value = false;
+      });
+    }
   }
 };
 </script>
