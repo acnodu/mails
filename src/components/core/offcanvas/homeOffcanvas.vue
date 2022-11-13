@@ -13,6 +13,7 @@
         id="close"
         class="bi bi-x-circle"
         data-bs-dismiss="offcanvas"
+
         :class="[isLoading?'invisible':'']"
       />
     </div>
