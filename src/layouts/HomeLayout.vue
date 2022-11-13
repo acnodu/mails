@@ -2,7 +2,7 @@
   <HomeOffcanvas />
 
   <div class="col-12">
-    <h5
+    <h2
       class="mb-0"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasTop"
@@ -12,7 +12,7 @@
         style="font-size: 12px;"
         class="bi bi-chevron-down"
       />
-    </h5>
+    </h2>
   </div>
 
   <div
