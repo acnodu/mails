@@ -1,15 +1,19 @@
 <template>
-  <Header
-    title="Redirections"
-    :options="[
-      {
-        icon: 'bi-plus-circle',
-        color: '#6B94D8',
-        to: {name:'new'}
-      }]"
-    :animable="true"
-    :class="[hideHeader?'animatedHidden':'header']"
-  />
+  <HomeOffcanvas />
+
+  <div class="col-12">
+    <h5
+      class="mb-0"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasTop"
+      aria-controls="offcanvasTop"
+    >
+      {{ mailsStore.selectedDomain }} <i
+        style="font-size: 12px;"
+        class="bi bi-chevron-down"
+      />
+    </h5>
+  </div>
 
   <div
     class="col-12 sticky-top pb-3 bg-black"
@@ -70,7 +74,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { useMailsStore } from '@/stores/mails';
-import { MailItem, Header } from '@/components';
+import { MailItem, HomeOffcanvas } from '@/components';
 import version from '@/assets/version.json';
 
 const searchIsFocus = ref(false);

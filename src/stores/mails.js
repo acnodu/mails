@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
 import { mailsService } from '@/services';
 
 export const useMailsStore = defineStore({
   id: 'mails',
   state: () => ({
     domains: [],
-    selectedDomain: '',
+    selectedDomain: useStorage('selectedDomain', ''),
 
     redirections: [],
   }),
@@ -48,13 +49,14 @@ export const useMailsStore = defineStore({
     async getRedirectionsDetails() {
       await Promise.all(
         this.redirections.map(async (redirection) => {
-          await mailsService.getRedirectionDetails(
-            this.selectedDomain,
-            redirection.id,
-          ).then((details) => {
-            const redirectionIndex = this.redirections.map((item) => item.id).indexOf(redirection.id);
-            this.redirections[redirectionIndex] = details;
-          });
+          await mailsService
+            .getRedirectionDetails(this.selectedDomain, redirection.id)
+            .then((details) => {
+              const redirectionIndex = this.redirections
+                .map((item) => item.id)
+                .indexOf(redirection.id);
+              this.redirections[redirectionIndex] = details;
+            });
         }),
       );
     },
@@ -68,5 +70,10 @@ export const useMailsStore = defineStore({
         });
       });
     },
+  },
+
+  persistence: {
+    enable: true,
+    mode: 'localStorage',
   },
 });

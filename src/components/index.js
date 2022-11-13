@@ -11,3 +11,6 @@ export { default as OVHForm } from './login/OVHCredentials.vue';
 // Components
 export { default as MailItem } from './mails/MailItem.vue';
 export { default as MailContextualMenu } from './mails/MailContextualMenu.vue';
+
+// Offcanvas
+export { default as HomeOffcanvas } from './core/offcanvas/homeOffcanvas.vue';
