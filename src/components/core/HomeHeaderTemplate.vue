@@ -1,10 +1,11 @@
 <template>
+  <HomeOffcanvas />
+
   <div
     id="homeHeader"
     class="col-12 mb-0 fixed-top bg-black pb-2"
+    :class="className"
   >
-    <HomeOffcanvas />
-
     <div class="row align-items-end gx-0 mt-4 pt-3">
       <div class="col-10">
         <h2
@@ -44,9 +45,27 @@ defineProps({
     type: String,
     default: '',
   },
+
+  className: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const goToNew = () => {
   router.push({ name: 'new' });
 };
 </script>
+
+<style scoped>
+.header{
+  top: 0;
+  transition: all 0.15s linear;
+}
+
+.animatedHidden{
+  top: -79px;
+  position: absolute;
+  transition: all 0.1s linear;
+}
+</style>

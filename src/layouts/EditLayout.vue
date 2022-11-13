@@ -28,7 +28,8 @@
   <div class="col-6">
     <button
       type="button"
-      class="btn btn-lg w-100 btn-outline-danger"
+      class="btn btn-lg w-100 btn-outline-secondary"
+      @click="goHome"
     >
       Cancel
     </button>
@@ -41,6 +42,15 @@
     >
       Save
     </button>
+  </div>
+
+  <div class="col-12 text-center mt-4">
+    <router-link
+      class="text-danger"
+      :to="{name:'home'}"
+    >
+      Delete this mail
+    </router-link>
   </div>
 </template>
 
@@ -57,6 +67,9 @@ const mailStore = useMailsStore();
 const mailid = computed(() => route.params.mailid);
 const currentRedirection = computed(() => mailStore.redirections.find((r) => r.id === mailid.value));
 
+const goHome = () => {
+  router.push({ name: 'home' });
+};
 onMounted(() => {
   if (!currentRedirection.value) {
     router.push({ name: 'home' });

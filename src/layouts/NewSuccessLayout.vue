@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 text-center mt-5">
+  <div class="col-12 text-center mt-5 pt-5">
     <div class="wrapper">
       <svg
         id="Layer_1"
@@ -25,7 +25,7 @@
 
   <div class="col-12 px-2 text-center">
     <p class="my-5">
-      The redirect from "<b>{{ route.query.from }}</b>" to "<b>{{ route.query.to }}</b>" has been created !
+      The new redirect "<b>{{ route.query.from }}</b>"<br>to "<b>{{ route.query.to }}</b>" has been created !
     </p>
 
     <router-link

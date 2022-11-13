@@ -14,18 +14,19 @@
         autocapitalize="off"
         :disabled="isLoading"
         type="text"
-        class="form-control bg-dark border-dark text-light shadow-none"
+        class="form-control bg-black border-dark text-light shadow-none"
         name="code1"
         placeholder="From:"
+        style="border-right: none;"
       >
-      <span class="input-group-text bg-dark border-dark text-light shadow-none">@{{ mails.selectedDomain }}</span>
+      <span class="input-group-text bg-black border-dark text-light shadow-none">@{{ mails.selectedDomain }}</span>
     </div>
 
     <div class="input-group input-group-lg mb-4">
       <input
         v-model="to"
         type="text"
-        class="form-control bg-dark border-dark text-light shadow-none"
+        class="form-control bg-black border-dark text-light shadow-none"
         name="code1"
         placeholder="To:"
         :disabled="isLoading"
@@ -36,8 +37,9 @@
   <div class="col-6">
     <button
       type="button"
-      class="btn btn-lg btn-outline-danger w-100"
+      class="btn btn-lg btn-outline-secondary w-100"
       :disabled="isLoading"
+      @click="goHome"
     >
       Cancel
     </button>
@@ -77,6 +79,10 @@ const isValid = computed(() => {
   return false;
 });
 
+const goHome = () => {
+  router.push({ name: 'home' });
+};
+
 const createRedirection = () => {
   isLoading.value = true;
 
@@ -90,7 +96,7 @@ const createRedirection = () => {
     router.push({
       name: 'newSuccess',
       query: {
-        from: from.value,
+        from: `${from.value}@${mails.selectedDomain}`,
         to: to.value,
       },
     });

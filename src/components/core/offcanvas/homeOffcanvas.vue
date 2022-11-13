@@ -5,9 +5,9 @@
     tabindex="-1"
     aria-labelledby="offcanvasTopLabel"
   >
-    <div class="offcanvas-header">
-      <h2 class="offcanvas-title">
-        Select domain
+    <div class="offcanvas-header px-0 mt-4 pt-3">
+      <h2 class="offcanvas-title mb-0">
+        <b>Select domain</b>
       </h2>
       <i
         id="close"
@@ -18,37 +18,35 @@
       />
     </div>
 
-    <div class="offcanvas-body container">
-      <div class="row align-items-center">
-        <div
-          v-for="(domain, index) in mailStore.domains"
-          :key="index"
-          class="col-12"
+    <div class="offcanvas-body px-0">
+      <div
+        v-for="(domain, index) in mailStore.domains"
+        :key="index"
+        class="col-12"
+      >
+        <h6
+          class="mb-3 row"
+          @click="setNewDomain(domain)"
         >
-          <h5
-            class="mb-3 row"
-            @click="setNewDomain(domain)"
-          >
-            <div class="col-1">
-              <div
-                v-if="isLoading && domain === mailStore.selectedDomain"
-                class="spinner-grow spinner-grow-sm text-success"
-                role="status"
-              />
-
-              <i
-                v-if="!isLoading && domain === mailStore.selectedDomain"
-                class="bi bi-arrow-right text-success"
-              />
-            </div>
+          <div class="col-1">
             <div
-              class="col"
-              :class="[domain === mailStore.selectedDomain?'text-success':'']"
-            >
-              {{ domain }}
-            </div>
-          </h5>
-        </div>
+              v-if="isLoading && domain === mailStore.selectedDomain"
+              class="spinner-grow spinner-grow-sm text-success"
+              role="status"
+            />
+
+            <i
+              v-if="!isLoading && domain === mailStore.selectedDomain"
+              class="bi bi-arrow-right text-success"
+            />
+          </div>
+          <div
+            class="col"
+            :class="[domain === mailStore.selectedDomain?'text-success':'']"
+          >
+            <b>{{ domain }}</b>
+          </div>
+        </h6>
       </div>
     </div>
   </div>

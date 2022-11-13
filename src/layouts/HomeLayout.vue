@@ -1,7 +1,7 @@
 <template>
   <HomeHeader
     :domain="mailsStore.selectedDomain"
-    :class="[hideHeader?'animatedHidden':'header']"
+    :class-name="[hideHeader?'animatedHidden':'header']"
   />
 
   <div
@@ -109,20 +109,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.header{
-  top: 0;
-  transition: all 0.15s linear;
-}
-
-.animatedHidden{
-  top: -79px;
-  position: absolute;
-  transition: all 0.15s linear;
-}
-
 .normal{
   margin-top: 78px;
-  transition: all 0.15s linear;
+  transition: all 0.1s linear;
 }
 
 .test{

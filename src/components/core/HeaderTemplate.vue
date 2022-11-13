@@ -1,7 +1,6 @@
 <template>
   <div
-    class="col-12 pb-2 mb-2 bg-black"
-    :class="[animable?'fixed-top':'sticky-top']"
+    class="col-12 pb-2 mb-2 bg-black sticky-top"
   >
     <div class="row align-items-end">
       <div
@@ -29,9 +28,9 @@
           {{ subTitle }}
         </p>
 
-        <h1 class="mb-0 pt-1">
+        <h2 class="mb-0 pt-1">
           <b>{{ title }}</b>
-        </h1>
+        </h2>
       </div>
 
       <div
