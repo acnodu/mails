@@ -1,11 +1,12 @@
 <template>
   <HomeHeader
     :domain="mailsStore.selectedDomain"
+    :class="[hideHeader?'animatedHidden':'header']"
   />
 
   <div
-    class="col-12 sticky-top mb-3 bg-black"
-    :style="`margin-top:${headerHeight};`"
+    class="col-12 sticky-top bg-black"
+    :class="[hideHeader?'test py-3':'normal mb-3']"
   >
     <div
       class="input-group"
@@ -110,21 +111,22 @@ onMounted(() => {
 <style scoped>
 .header{
   top: 0;
-  transition: all 0.2s linear;
+  transition: all 0.15s linear;
 }
 
 .animatedHidden{
-  top: -100px;
+  top: -79px;
   position: absolute;
   transition: all 0.15s linear;
 }
 
 .normal{
-  margin-top: 82.73px;
+  margin-top: 78px;
   transition: all 0.15s linear;
 }
 
 .test{
+  margin-top: 0px;
   transition: all 0.15s linear;
 }
 </style>
