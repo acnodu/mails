@@ -5,7 +5,7 @@
 
   <div
     class="col-12 sticky-top mb-3 bg-black"
-    :class="[hideHeader?'test pt-3':'normal']"
+    :style="`margin-top:${headerHeight};`"
   >
     <div
       class="input-group"
@@ -41,7 +41,6 @@
       >{{ redirectionsList.length }}/{{ mailsStore.redirections.length }}</span>
     </div>
   </div>
-
   <UpdateAlert />
 
   <div class="col-12">
@@ -62,7 +61,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import {
   MailItem, HomeHeader, UpdateAlert,
@@ -72,6 +71,7 @@ import version from '@/assets/version.json';
 const searchIsFocus = ref(false);
 const search = ref('');
 const mailsStore = useMailsStore();
+const headerHeight = ref(0);
 
 const hideHeader = computed(() => {
   if (searchIsFocus.value || search.value !== '') {
@@ -102,6 +102,9 @@ const forceReload = () => {
   window.location.reload(true);
 };
 
+onMounted(() => {
+  headerHeight.value = `${document.getElementById('homeHeader').offsetHeight + 1}px`;
+});
 </script>
 
 <style scoped>

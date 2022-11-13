@@ -58,7 +58,6 @@ router.beforeEach((to, from, next) => {
 
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
-
   if (to.name !== 'login' && !userStore.logged) next({ name: 'login' });
   if (to.name === 'login' && userStore.logged) next({ name: 'home' });
   else next();
