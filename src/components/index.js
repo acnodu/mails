@@ -11,10 +11,10 @@ export { default as OVHForm } from './login/OVHCredentials.vue';
 
 // Components
 export { default as MailItem } from './mails/MailItem.vue';
-export { default as MailContextualMenu } from './mails/MailContextualMenu.vue';
 
 // Offcanvas
-export { default as HomeOffcanvas } from './core/offcanvas/homeOffcanvas.vue';
+export { default as SelectDomainOffcanvas } from './core/offcanvas/selectDomainOffcanvas.vue';
+export { default as DeleteMailsOffcanvas } from './core/offcanvas/deleteMailsOffcanvas.vue';
 
 // Headers
 export { default as HomeHeader } from './core/HomeHeaderTemplate.vue';

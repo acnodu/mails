@@ -1,5 +1,9 @@
 <template>
-  <HomeOffcanvas />
+  <SelectDomainOffcanvas />
+  <DeleteMailsOffcanvas
+    :selectedemails="selectedemails"
+    @purgeselectedmails="$emit('purgeselectedmails')"
+  />
 
   <div
     id="homeHeader"
@@ -23,7 +27,16 @@
 
       <div class="col-2 text-end">
         <i
-          class="bi bi-plus-circle"
+          v-if="selectedemails.length > 0"
+          class="bi bi-trash3"
+          style="color: #dc3545; font-size: 18px; margin-right: 10px;"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#deleteMailsOffcanvas"
+          aria-controls="deleteMailsOffcanvas"
+        />
+
+        <i
+          class="bi bi-plus-circle ml-5"
           style="color: #6B94D8; font-size: 18px;"
           @click="goToNew"
         />
@@ -35,10 +48,12 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import {
-  HomeOffcanvas,
+  SelectDomainOffcanvas, DeleteMailsOffcanvas,
 } from '@/components';
 
 const router = useRouter();
+
+defineEmits(['purgeselectedmails']);
 
 defineProps({
   domain: {
@@ -49,6 +64,11 @@ defineProps({
   className: {
     type: Array,
     default: () => [],
+  },
+
+  selectedemails: {
+    type: Array,
+    required: true,
   },
 });
 

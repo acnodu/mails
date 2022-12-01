@@ -2,6 +2,11 @@ import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { mailsService } from '@/services';
 
+function timeout(ms) {
+  // eslint-disable-next-line no-promise-executor-return
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export const useMailsStore = defineStore({
   id: 'mails',
   state: () => ({
@@ -62,12 +67,16 @@ export const useMailsStore = defineStore({
     },
 
     createRedirection({ from, to, domain }) {
-      return mailsService.postMail(from, to, domain).then((redirection) => {
-        this.redirections.push({
-          id: redirection.id,
-          from,
-          to,
-        });
+      return mailsService.postMail(from, to, domain).then(async () => {
+        await timeout(1000);
+        await this.getRedirections();
+      });
+    },
+
+    deleteRedirection({ domain, id }) {
+      return mailsService.deleteRedirection(domain, id).then(() => {
+        const index = this.redirections.findIndex((redirect) => redirect.id === id);
+        this.redirections.splice(index, 1);
       });
     },
   },

@@ -43,15 +43,6 @@
       Save
     </button>
   </div>
-
-  <div class="col-12 text-center mt-4">
-    <router-link
-      class="text-danger"
-      :to="{name:'home'}"
-    >
-      Delete this mail
-    </router-link>
-  </div>
 </template>
 
 <script setup>

@@ -16,6 +16,22 @@
           >{{ to }}</small>
         </p>
       </div>
+
+      <div
+        class="col-2 text-end h-100"
+        style="font-size: 24px;"
+        @click.prevent="toggleSelect"
+      >
+        <i
+          v-if="isSelected === false"
+          class="bi bi-circle text-muted"
+        />
+
+        <i
+          v-if="isSelected === true"
+          class="bi bi-check-circle text-success"
+        />
+      </div>
     </router-link>
   </li>
 </template>
@@ -28,11 +44,23 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+
+  selectedemails: {
+    type: Array,
+    required: true,
+  },
 });
+
+const emit = defineEmits(['toggleselectedmail']);
 
 const to = computed(() => (props.redirection.to || ''));
 const id = computed(() => (props.redirection.id || ''));
 const from = computed(() => (props.redirection.from ? props.redirection.from.split('@')[0] : ''));
+const isSelected = computed(() => props.selectedemails.includes(props.redirection));
+
+const toggleSelect = () => {
+  emit('toggleselectedmail', props.redirection);
+};
 </script>
 
 <style scoped>

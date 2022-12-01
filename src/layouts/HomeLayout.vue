@@ -1,7 +1,9 @@
 <template>
   <HomeHeader
     :domain="mailsStore.selectedDomain"
+    :selectedemails="selectedEmails"
     :class-name="[hideHeader?'animatedHidden':'header']"
+    @purgeselectedmails="selectedEmails=[]"
   />
 
   <div
@@ -50,7 +52,9 @@
         <MailItem
           v-for="(redirection, index) in redirections"
           :key="index"
+          :selectedemails="selectedEmails"
           :redirection="redirection"
+          @toggleselectedmail="toggleSelectedMail"
         />
       </ul>
     </div>
@@ -62,18 +66,23 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue';
+import {
+  computed, ref, onMounted, watch,
+} from 'vue';
 import { useMailsStore } from '@/stores/mails';
 import {
   MailItem, HomeHeader, UpdateAlert,
 } from '@/components';
 import version from '@/assets/version.json';
 
-const searchIsFocus = ref(false);
-const search = ref('');
 const mailsStore = useMailsStore();
-const headerHeight = ref(0);
 
+const search = ref('');
+const headerHeight = ref(0);
+const selectedEmails = ref([]);
+const searchIsFocus = ref(false);
+
+const selectedDomain = computed(() => mailsStore.selectedDomain);
 const hideHeader = computed(() => {
   if (searchIsFocus.value || search.value !== '') {
     return true;
@@ -99,12 +108,25 @@ const redirections = computed({
   },
 });
 
+const toggleSelectedMail = (redirection) => {
+  if (selectedEmails.value.includes(redirection)) {
+    const index = selectedEmails.value.findIndex((obj) => obj.id === redirection.id);
+    selectedEmails.value.splice(index, 1);
+  } else {
+    selectedEmails.value.push(redirection);
+  }
+};
+
 const forceReload = () => {
   window.location.reload(true);
 };
 
 onMounted(() => {
   headerHeight.value = `${document.getElementById('homeHeader').offsetHeight + 1}px`;
+});
+
+watch(selectedDomain, () => {
+  selectedEmails.value = [];
 });
 </script>
 

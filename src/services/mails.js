@@ -9,6 +9,10 @@ export default {
     return apiClient.get(`/email/domain/${domain}/redirection`);
   },
 
+  deleteRedirection(domain, id) {
+    return apiClient.delete(`/email/domain/${domain}/redirection/${id}`);
+  },
+
   getRedirectionDetails(domain, id) {
     return apiClient.get(`/email/domain/${domain}/redirection/${id}`);
   },

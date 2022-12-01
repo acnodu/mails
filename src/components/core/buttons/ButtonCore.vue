@@ -2,7 +2,7 @@
   <button
     class="btn"
     type="submit"
-    :disabled="disabled"
+    :disabled="disabled || loading"
   >
     <span
       class="spinner-grow spinner-grow-sm"
