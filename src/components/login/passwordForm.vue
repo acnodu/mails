@@ -36,6 +36,7 @@ const login = () => {
     if (success) {
       window.location.reload(true);
     } else {
+      // eslint-disable-next-line no-alert
       alert('The password is invalid.');
     }
   });

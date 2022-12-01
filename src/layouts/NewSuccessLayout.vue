@@ -1,3 +1,4 @@
+<!-- eslint-disable max-len -->
 <template>
   <div class="col-12 text-center mt-5 pt-5">
     <div class="wrapper">
