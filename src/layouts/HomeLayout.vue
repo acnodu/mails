@@ -44,6 +44,7 @@
       >{{ redirectionsList.length }}/{{ mailsStore.redirections.length }}</span>
     </div>
   </div>
+
   <UpdateAlert />
 
   <div class="col-12">
@@ -57,6 +58,28 @@
           @toggleselectedmail="toggleSelectedMail"
         />
       </ul>
+    </div>
+  </div>
+
+  <div
+    v-if="redirections.length === 0 && search !== ''"
+    class="col-12"
+  >
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text text-light">
+          <b>{{ search }}@{{ selectedDomain }}</b> redirect does not exist.
+        </p>
+
+        <div class="col mx-auto d-grid gap-2">
+          <router-link
+            class="btn btn-success"
+            :to="{name:'new', query: {from:search}}"
+          >
+            Create It
+          </router-link>
+        </div>
+      </div>
     </div>
   </div>
 

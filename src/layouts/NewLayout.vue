@@ -68,7 +68,7 @@ const router = useRouter();
 const mails = useMailsStore();
 
 const isLoading = ref(false);
-const from = ref('');
+const from = ref(router.currentRoute.value.query.from || '');
 const to = ref(user.DEFAULT_FORWARD || '');
 
 const isValid = computed(() => {
