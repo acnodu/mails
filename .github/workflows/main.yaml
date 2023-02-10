@@ -48,3 +48,12 @@ jobs:
         push: true
         context: .
         tags: acnodu/${{env.NAME}}:latest, acnodu/${{env.NAME}}:${{ env.VERSION }}
+
+    # Update Readme
+     - name: Docker Hub Description
+      uses: peter-evans/dockerhub-description@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: acnodu/${{env.NAME}}
+        readme-filepath: ./README.md
